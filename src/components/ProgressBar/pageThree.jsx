@@ -75,33 +75,33 @@ const PageThree = ({row, updateDetailsOnUpdate, onButtonClick }) => {
             row?.invoiceStatus === 'INVOICE_VERIFIED' 
                 ?
                 (
-                  <Stack direction='row' sx={{width:'100%'}} justifyContent='space-between' alignItems='center'>
-                    <Button 
+                  <Button 
                     variant="contained" 
-                    sx={{backgroundColor:'#3f51b5', '&:hover':{backgroundColor:'#27399a'}, width:'30%'}}
-                    onClick={() => { updateDetailsOnUpdate() } }
+                    sx={{backgroundColor:'#3f51b5', '&:hover':{backgroundColor:'#27399a'}, width:'60%'}}
+                    onClick={() => { onButtonClick('pagefour') } }
                     >
-                      REFRESH
-                    </Button>
-
-                    <Button 
-                    variant="contained" 
-                    sx={{backgroundColor:'#3f51b5', '&:hover':{backgroundColor:'#27399a'}, width:'30%'}}
-                    onClick={() => { () => { alert("Process Reinitiated successfully") } } }
-                    >
-                      REINITIATE
-                    </Button>
-                  </Stack>
+                      NEXT
+                  </Button>
                 )
                 :
                 (
+                  <Stack direction='row' sx={{width:'70%'}} justifyContent='space-between' alignItems='center'>
                   <Button 
                   variant="contained" 
-                  sx={{backgroundColor:'#3f51b5', '&:hover':{backgroundColor:'#27399a'}, width:'60%'}}
-                  onClick={() => { onButtonClick('pagefour') } }
+                  sx={{backgroundColor:'#3f51b5', '&:hover':{backgroundColor:'#27399a'}, width:'30%'}}
+                  onClick={() => { updateDetailsOnUpdate() } }
                   >
-                    NEXT
+                    REFRESH
                   </Button>
+
+                  <Button 
+                  variant="contained" 
+                  sx={{backgroundColor:'#3f51b5', '&:hover':{backgroundColor:'#27399a'}, width:'30%'}}
+                  onClick={() => { alert("Process Reinitiated successfully") } }
+                  >
+                    REINITIATE
+                  </Button>
+                </Stack>
                 )
           )
         }
