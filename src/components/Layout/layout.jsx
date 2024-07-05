@@ -43,7 +43,7 @@ const Layout = (props) => {
                         <HomeOutlinedIcon fontSize='small' />
                         <Typography variant='body2' sx={{userSelect:'none'}} > Dashboard </Typography>
                     </Stack>
-                    <Stack 
+                    {/* <Stack 
                     direction='row' 
                     spacing={2} 
                     onClick = {() => { navigate('/resume-matching') }}
@@ -57,7 +57,7 @@ const Layout = (props) => {
                     >
                         <DescriptionOutlinedIcon fontSize='small' />
                         <Typography variant='body2' sx={{userSelect:'none'}} > Resume Matching </Typography>
-                    </Stack>
+                    </Stack> */}
                 </Stack>
                 <Avatar {...getInitials('Bhavy Rastogi')} sx={{backgroundColor:'#3f51b5'}} />
             </Stack>

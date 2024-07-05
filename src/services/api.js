@@ -1,7 +1,7 @@
 import { getConfig, ignoreAuth } from './utils';
 import customAxios from './interceptor';
 
-const baseApiUrl =  '';
+const baseApiUrl =  'http://localhost:8080';
 
 export const defaultTimeout = 10000;
 

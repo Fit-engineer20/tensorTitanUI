@@ -1,14 +1,29 @@
 import React from 'react'
 import { Stack, Avatar, Typography, TextField, Button } from '@mui/material'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { useLazyLoginQuery } from '../services/userApis';
 
 const Login = ({toggle}) => {
 
+    const navigate = useNavigate();
     const { register , handleSubmit, formState: { errors, isLoading } } = useForm();
+    const [userLogin] = useLazyLoginQuery();
 
     const onSubmit = (formValues) => {
-        console.log(formValues);
+        userLogin(formValues).then((response) => {
+            const { username } = formValues;
+            console.log(response);
+            const { isSuccess } = response;
+            if (isSuccess && response?.data) {
+              const { accessToken = '', roles } = response?.data?.data ?? {};
+              localStorage.setItem('token', accessToken);
+              localStorage.setItem('username', username);
+              localStorage.setItem('role', JSON.stringify(roles ?? []));
+              navigate('/');
+            }
+          });
     }
 
   return (

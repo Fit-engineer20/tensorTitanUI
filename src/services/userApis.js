@@ -11,7 +11,7 @@ export const userApis = createApi({
     endpoints: (builder) => ({
         login: builder.query({
             query: (payload) => ({
-            url: `${endPoint}/signin`,
+            url: `${endpoint}/signin`,
             method: 'POST',
             data: payload
             })

@@ -2,13 +2,19 @@ import React from 'react'
 import { Stack, Avatar, Typography, TextField, Button } from '@mui/material'
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { useForm } from 'react-hook-form';
+import { useLazyRegisterQuery } from '../services/userApis';
 
 const SignUp = ({toggle}) => {
 
     const { register , handleSubmit, formState: { errors, isLoading } } = useForm();
+    const [userRegister] = useLazyRegisterQuery();
 
     const onSubmit = (formValues) => {
         console.log(formValues);
+        formValues['role'] = ["ROLE_ADMIN"]
+        userRegister(formValues).then((response) => {
+            console.log(response);
+        })
     }
 
   return (

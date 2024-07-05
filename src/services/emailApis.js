@@ -22,7 +22,8 @@ export const emailApis = createApi({
                     item['body'] = textBody;
                     return item;
                 })
-                return newData;
+                response['data'] = newData;
+                return response;
             }
         }),
         getEmailDetails: builder.query({
@@ -31,9 +32,19 @@ export const emailApis = createApi({
                 method: 'GET'
             }),
             transformResponse: (response) => {
-                response['body'] = convert(response?.body);
+                let newData = response?.data;
+                let newBody = convert(newData?.body);
+                newData['body'] = newBody;
+                response['data'] = newData;
                 return response;
             }
+        }),
+        attachEntity: builder.mutation({
+            query:(payload) => ({
+                url: `${endpoint}/attachEntity`,
+                method: 'POST',
+                data: payload
+            })
         })
     })
 })
@@ -41,5 +52,6 @@ export const emailApis = createApi({
 export const {
     endpoints,
     useLazyGetAllEmailsQuery,
-    useLazyGetEmailDetailsQuery
+    useLazyGetEmailDetailsQuery,
+    useAttachEntityMutation
 } = emailApis;

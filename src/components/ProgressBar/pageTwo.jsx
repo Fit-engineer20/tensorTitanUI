@@ -1,13 +1,34 @@
 import React, { useState } from 'react'
 import { Button, InputBase, Stack, Typography } from '@mui/material';
+import { useAttachEntityMutation } from '../../services/emailApis';
 
-const PageTwo = ({ onButtonClick }) => {
+const PageTwo = ({ row, updateDetailsOnUpdate, onButtonClick }) => {
 
+    const { id,  entityGuid } = row;
     const [shipment, setShipment] = useState('');
+    const [uploaded, setUploaded] = useState(entityGuid ? true : false);
+    const [attachShipment] = useAttachEntityMutation();
 
     const handleChange = (ev) => {
         setShipment(ev.target.value);
     }
+
+    const handleUpload = () => {
+      attachShipment({
+        emailMessageId: id,
+        entityNumber: shipment
+      }).then((response) => {
+        console.log(response);
+        if(response?.data){
+          setUploaded(true);
+          updateDetailsOnUpdate();
+        }
+
+        if(response?.error){
+          alert(response?.error?.data?.error?.errorMap?.errorMessage ?? "Something went wrong or shipment not found try with some other shipment ID");
+        }
+      })
+  }
 
   return (
     <Stack sx={{width:'100%', justifyContent:'center', alignItems:'center'}} spacing={4}>
@@ -21,13 +42,27 @@ const PageTwo = ({ onButtonClick }) => {
             onChange={handleChange}
           />
         </Stack>
-        <Button 
-        variant="contained" 
-        sx={{backgroundColor:'#3f51b5', '&:hover':{backgroundColor:'#27399a'}, width:'60%'}}
-        onClick={() => { onButtonClick('pagethree') } }
-        >
-          Next
-        </Button>
+        {
+          !uploaded ?
+          (
+            <Button 
+            variant="contained" 
+            sx={{backgroundColor:'#3f51b5', '&:hover':{backgroundColor:'#27399a'}, width:'60%'}}
+            onClick={handleUpload} 
+            >
+              UPLOAD
+            </Button>
+          ) :
+          (
+            <Button 
+            variant="contained" 
+            sx={{backgroundColor:'#3f51b5', '&:hover':{backgroundColor:'#27399a'}, width:'60%'}}
+            onClick={() => { onButtonClick('pagethree') } }
+            >
+              NEXT
+            </Button>
+          )
+        }
     </Stack>
   )
 }
