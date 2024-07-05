@@ -40,7 +40,7 @@ const EmailDetails = () => {
             setPage("pagethree");
             break;
         case "4":
-            alert("pagefour");
+            setPage("pagefour");
             break;
         default:
             setPage("1");
@@ -119,10 +119,10 @@ const EmailDetails = () => {
                 <CustomProgressBar page={page} onPageNumberClick={nextPageNumber} />
                 {
                     {
-                        pageone: <PageOne row={row} updateDetailsOnUpdate={updateDetailsOnUpdate} onButtonClick={nextPage} />,
-                        pagetwo: <PageTwo row={row} updateDetailsOnUpdate={updateDetailsOnUpdate} onButtonClick={nextPage} />,
-                        pagethree: <PageThree row={row} updateDetailsOnUpdate={updateDetailsOnUpdate} onButtonClick={nextPage} />,
-                        pagefour: <PageFour />,
+                        pageone: <PageOne row={rowData} updateDetailsOnUpdate={updateDetailsOnUpdate} onButtonClick={nextPage} />,
+                        pagetwo: <PageTwo row={rowData} updateDetailsOnUpdate={updateDetailsOnUpdate} onButtonClick={nextPage} />,
+                        pagethree: <PageThree row={rowData} updateDetailsOnUpdate={updateDetailsOnUpdate}  onButtonClick={nextPage} />,
+                        pagefour: <PageFour row={rowData} updateDetailsOnUpdate={updateDetailsOnUpdate} />,
                     }[page]
                 }
             </Stack>

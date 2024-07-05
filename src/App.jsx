@@ -6,6 +6,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Layout from './components/Layout/layout';
 import EmailDetails from './pages/Email/emailDetails';
 import ResumeMatching from './pages/Matching';
+import Register from './pages/Register';
 import { store } from './store';
 
 const theme = createTheme({
@@ -13,7 +14,6 @@ const theme = createTheme({
   // other theme properties
 });
 
-const Register = lazy(() => import('./pages/Register'));
 const EmailListing = lazy(() => import('./pages/Email'));
 
 

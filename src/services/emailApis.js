@@ -45,6 +45,12 @@ export const emailApis = createApi({
                 method: 'POST',
                 data: payload
             })
+        }),
+        postToFusion: builder.query({
+            query:(messageId) => ({
+                url: `${endpoint}/postToFusion?emailMessageId=${messageId}`,
+                method: 'POST'
+            })
         })
     })
 })
@@ -53,5 +59,6 @@ export const {
     endpoints,
     useLazyGetAllEmailsQuery,
     useLazyGetEmailDetailsQuery,
-    useAttachEntityMutation
+    useAttachEntityMutation,
+    useLazyPostToFusionQuery
 } = emailApis;
