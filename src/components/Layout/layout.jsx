@@ -43,7 +43,7 @@ const Layout = (props) => {
   return (
     <Stack sx={{width:'100vw', height:'100vh', backgroundColor:'#F4F5F4'}}>
         <Stack sx={{width:'92%', padding:'10px 4%', justifyContent:'space-between', alignItems:'center', height:'60px', backgroundColor:'#ffffff'}} direction='row'>
-            <Typography variant='h5' sx={{color:'#002BC4'}} > LOGO </Typography>
+            <Typography variant='h5' sx={{color:'#002BC4'}} > DPW </Typography>
             <Stack direction='row' spacing={2} sx={{width:'40%'}} justifyContent='end' >
                 <Stack direction='row' spacing={2}>
                     <Stack 
